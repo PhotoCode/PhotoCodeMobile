@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mobile/screens/photo_screen.dart';
 
 import 'constants.dart';
 import 'main_screen.dart';
@@ -57,7 +56,7 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(),
       routes: {
         LoginScreen.routeName: (context) => LoginScreen(),
-        MainScreen.routeName: (context) => PhotoScreen(),
+        MainScreen.routeName: (context) => MainScreen(),
       },
     );
   }
