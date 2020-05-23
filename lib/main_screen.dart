@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'constants.dart';
 import 'widgets/fade_in.dart';
+import 'widgets/photo_code_bottom_navigation_bar.dart';
 
 class MainScreen extends StatefulWidget {
   static const routeName = '/main';
