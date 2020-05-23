@@ -27,39 +27,29 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
   }
 
   @override
-  void dispose() {
-    //_richTextFieldState.currentState?.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Dummy Editor"),
-      ),
-      body: Container(
-        height: 300.0,
-        margin: EdgeInsets.all(24.0),
-        padding: EdgeInsets.all(24.0),
-        decoration:
-            new BoxDecoration(border: new Border.all(color: Colors.grey)),
-        child: RichCodeField(
-          autofocus: true,
-          controller: _rec,
-          textCapitalization: TextCapitalization.none,
-          decoration: null,
-          syntaxHighlighter: _syntaxHighlighterBase,
-          maxLines: null,
-          onChanged: (String s) {},
-          onBackSpacePress: (TextEditingValue oldValue) {},
-          onEnterPress: (TextEditingValue oldValue) {
-            var result = _syntaxHighlighterBase.onEnterPress(oldValue);
-            if (result != null) {
-              _rec.value = result;
-            }
-          },
+    return Container(
+      height: 300.0,
+      margin: EdgeInsets.all(24.0),
+      padding: EdgeInsets.all(24.0),
+      decoration: new BoxDecoration(border: new Border.all(color: Colors.grey)),
+      child: RichCodeField(
+        autofocus: true,
+        controller: _rec,
+        style: TextStyle(
+          color: Colors.white,
         ),
+        textCapitalization: TextCapitalization.none,
+        syntaxHighlighter: _syntaxHighlighterBase,
+        maxLines: null,
+        onChanged: (String s) {},
+        onBackSpacePress: (TextEditingValue oldValue) {},
+        onEnterPress: (TextEditingValue oldValue) {
+          var result = _syntaxHighlighterBase.onEnterPress(oldValue);
+          if (result != null) {
+            _rec.value = result;
+          }
+        },
       ),
     );
   }
