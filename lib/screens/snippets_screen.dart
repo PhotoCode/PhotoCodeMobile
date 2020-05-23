@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SnippetsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text('Dragon is a noob.');
+    return Text('Dragon is not a noob.');
   }
 
   Widget _buildSnippet(int index) {
