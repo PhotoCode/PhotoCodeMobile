@@ -30,6 +30,13 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
+      theme: LoginTheme(
+        buttonTheme: LoginButtonTheme(
+          backgroundColor: Constants.accentColor,
+          splashColor: Colors.white,
+        ),
+        primaryColor: Constants.backgroundColor,
+      ),
       title: Constants.appName,
       logo: 'assets/images/ecorp.png',
       logoTag: Constants.logoTag,

@@ -83,7 +83,7 @@ class _MainScreenState extends State<MainScreen>
         fadeDirection: FadeDirection.startToEnd,
       ),
       title: title,
-      backgroundColor: theme.primaryColor.withOpacity(.1),
+      backgroundColor: theme.backgroundColor,
       elevation: 0,
       textTheme: theme.accentTextTheme,
       iconTheme: theme.accentIconTheme,
@@ -103,6 +103,7 @@ class _MainScreenState extends State<MainScreen>
           color: theme.primaryColor.withOpacity(.1),
           child: Container(),
         ),
+        bottomNavigationBar: PhotoCodeBottomNavigationBar(),
       ),
     );
   }
