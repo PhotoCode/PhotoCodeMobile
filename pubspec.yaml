@@ -37,6 +37,7 @@ dependencies:
   rich_code_editor:
     git:
       url: git://github.com/leonzalion/rich_code_editor.git
+  dio: ^3.0.9
 
 dev_dependencies:
   flutter_test:
