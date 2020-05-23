@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/widgets/photo_code_app_bar.dart';
 
+import 'constants.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/edit_screen.dart';
 import 'screens/photo_screen.dart';
@@ -39,6 +40,7 @@ class _MainScreenState extends State<MainScreen>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Constants.backgroundColor,
         appBar: PhotoCodeAppBar(
           loadingController: _loadingController,
         ),
