@@ -14,6 +14,8 @@ class PhotoCodeBottomNavigationBar extends StatelessWidget {
       activeIconColor: Constants.textColor,
       circleColor: Constants.accentColor,
       inactiveIconColor: Constants.accentColor,
+      barBackgroundColor: Constants.barBackgroundColor,
+      textColor: Constants.accentColor,
       tabs: [
         TabData(iconData: Icons.home, title: "Home"),
         TabData(iconData: Icons.search, title: "Search"),
