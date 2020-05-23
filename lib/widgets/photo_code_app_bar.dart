@@ -32,7 +32,7 @@ class PhotoCodeAppBar extends StatelessWidget with PreferredSizeWidget {
             child: Hero(
               tag: Constants.logoTag,
               child: Image.asset(
-                'assets/images/ecorp.png',
+                'assets/images/photocode.png',
                 filterQuality: FilterQuality.high,
                 height: 30,
               ),

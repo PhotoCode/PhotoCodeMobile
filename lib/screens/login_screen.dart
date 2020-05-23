@@ -29,28 +29,38 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterLogin(
-      theme: LoginTheme(
-        buttonTheme: LoginButtonTheme(
-          backgroundColor: Constants.accentColor,
-          splashColor: Colors.white,
+    return Container(
+      color: Constants.backgroundColor,
+      child: Transform.translate(
+        offset: Offset(0.0, 50),
+        child: FlutterLogin(
+          theme: LoginTheme(
+            buttonTheme: LoginButtonTheme(
+              backgroundColor: Constants.accentColor,
+              splashColor: Colors.white,
+            ),
+            primaryColor: Constants.backgroundColor,
+            titleStyle: TextStyle(
+              color: Constants.accentColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          title: Constants.appName,
+          logo: 'assets/images/photocode.png',
+          logoTag: Constants.logoTag,
+          titleTag: Constants.titleTag,
+          emailValidator: _validateEmail,
+          passwordValidator: _validatePassword,
+          onLogin: _loginUser,
+          onSignup: _loginUser,
+          onSubmitAnimationCompleted: () {
+            Navigator.of(context).pushReplacement(FadePageRoute(
+              builder: (context) => MainScreen(),
+            ));
+          },
+          onRecoverPassword: _recoverPassword,
         ),
-        primaryColor: Constants.backgroundColor,
       ),
-      title: Constants.appName,
-      logo: 'assets/images/ecorp.png',
-      logoTag: Constants.logoTag,
-      titleTag: Constants.titleTag,
-      emailValidator: _validateEmail,
-      passwordValidator: _validatePassword,
-      onLogin: _loginUser,
-      onSignup: _loginUser,
-      onSubmitAnimationCompleted: () {
-        Navigator.of(context).pushReplacement(FadePageRoute(
-          builder: (context) => MainScreen(),
-        ));
-      },
-      onRecoverPassword: _recoverPassword,
     );
   }
 }

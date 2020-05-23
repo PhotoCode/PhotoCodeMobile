@@ -32,6 +32,7 @@ dependencies:
   image_picker: ^0.6.6+4
   platform_action_sheet: ^0.0.3
   floating_search_bar: ^0.3.0
+  date_format: ^1.0.8
   rich_code_editor: ^1.0.0
   zefyr: ^0.11.0
 
@@ -43,9 +44,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/ecorp.png
-    - assets/images/ecorp-lightblue.png
-    - assets/images/ecorp-lightgreen.png
+    - assets/images/photocode.png
 
   fonts:
     - family: OpenSans
