@@ -1,5 +1,6 @@
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constants.dart';
 
@@ -15,9 +16,9 @@ class PhotoCodeBottomNavigationBar extends StatelessWidget {
       circleColor: Constants.accentColor,
       inactiveIconColor: Constants.accentColor,
       tabs: [
-        TabData(iconData: Icons.home, title: "Home"),
-        TabData(iconData: Icons.search, title: "Search"),
-        TabData(iconData: Icons.shopping_cart, title: "Basket")
+        TabData(iconData: FontAwesomeIcons.code, title: "Snippets"),
+        TabData(iconData: Icons.camera, title: "Upload"),
+        TabData(iconData: Icons.edit, title: "Edit")
       ],
       onTabChangedListener: setPage,
     );

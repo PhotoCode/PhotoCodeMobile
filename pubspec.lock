@@ -71,6 +71,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.2"
+  floating_search_bar:
+    dependency: "direct main"
+    description:
+      name: floating_search_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   flushbar:
     dependency: transitive
     description:
@@ -247,6 +254,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  rich_code_editor:
+    dependency: "direct main"
+    description:
+      name: rich_code_editor
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   sky_engine:
     dependency: transitive
     description: flutter

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile/widgets/photo_code_app_bar.dart';
 
 import 'constants.dart';
-import 'screens/dashboard_screen.dart';
 import 'screens/edit_screen.dart';
 import 'screens/photo_screen.dart';
 import 'widgets/photo_code_bottom_navigation_bar.dart';

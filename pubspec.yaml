@@ -31,6 +31,8 @@ dependencies:
   getflutter: ^1.0.11
   image_picker: ^0.6.6+4
   platform_action_sheet: ^0.0.3
+  floating_search_bar: ^0.3.0
+  rich_code_editor: ^1.0.0
   zefyr: ^0.11.0
 
 dev_dependencies:
