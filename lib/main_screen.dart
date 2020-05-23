@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/screens/snippets_screen.dart';
 import 'package:mobile/widgets/photo_code_app_bar.dart';
 
 import 'constants.dart';
 import 'screens/edit_screen.dart';
 import 'screens/photo_screen.dart';
+import 'screens/snippets_screen.dart';
 import 'widgets/photo_code_bottom_navigation_bar.dart';
 
 class MainScreen extends StatefulWidget {
@@ -62,12 +64,12 @@ class _MainScreenState extends State<MainScreen>
   Widget _getPage(int page) {
     switch (page) {
       case 0:
-        return DashboardScreen();
+        return SnippetsScreen();
       case 1:
         return EditScreen();
       case 2:
         return PhotoScreen();
     }
-    return DashboardScreen();
+    return SnippetsScreen();
   }
 }
