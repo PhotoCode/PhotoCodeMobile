@@ -1,12 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_login/theme.dart';
 import 'package:flutter_login/widgets.dart';
-import 'transition_route_observer.dart';
-import 'widgets/fade_in.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'constants.dart';
+import 'transition_route_observer.dart';
 import 'widgets/animated_numeric_text.dart';
+import 'widgets/fade_in.dart';
 import 'widgets/round_button.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -18,13 +19,6 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen>
     with SingleTickerProviderStateMixin, TransitionRouteAware {
-  Future<bool> _goToLogin(BuildContext context) {
-    return Navigator.of(context)
-        .pushReplacementNamed('/')
-        // we dont want to pop the screen, just replace it completely
-        .then((_) => false);
-  }
-
   final routeObserver = TransitionRouteObserver<PageRoute>();
   static const headerAniInterval =
       const Interval(.1, .3, curve: Curves.easeOut);
@@ -69,11 +63,6 @@ class _DashboardScreenState extends State<DashboardScreen>
       icon: const Icon(FontAwesomeIcons.bars),
       onPressed: () {},
     );
-    final signOutBtn = IconButton(
-      icon: const Icon(FontAwesomeIcons.signOutAlt),
-      color: theme.accentColor,
-      onPressed: () => _goToLogin(context),
-    );
     final title = Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -108,15 +97,6 @@ class _DashboardScreenState extends State<DashboardScreen>
         curve: headerAniInterval,
         fadeDirection: FadeDirection.startToEnd,
       ),
-      actions: <Widget>[
-        FadeIn(
-          child: signOutBtn,
-          controller: _loadingController,
-          offset: .3,
-          curve: headerAniInterval,
-          fadeDirection: FadeDirection.endToStart,
-        ),
-      ],
       title: title,
       backgroundColor: theme.primaryColor.withOpacity(.1),
       elevation: 0,
@@ -283,51 +263,48 @@ class _DashboardScreenState extends State<DashboardScreen>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return WillPopScope(
-      onWillPop: () => _goToLogin(context),
-      child: SafeArea(
-        child: Scaffold(
-          appBar: _buildAppBar(theme),
-          body: Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: theme.primaryColor.withOpacity(.1),
-            child: Stack(
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    SizedBox(height: 40),
-                    Expanded(
-                      flex: 2,
-                      child: _buildHeader(theme),
+    return SafeArea(
+      child: Scaffold(
+        appBar: _buildAppBar(theme),
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: theme.primaryColor.withOpacity(.1),
+          child: Stack(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  SizedBox(height: 40),
+                  Expanded(
+                    flex: 2,
+                    child: _buildHeader(theme),
+                  ),
+                  Expanded(
+                    flex: 8,
+                    child: ShaderMask(
+                      // blendMode: BlendMode.srcOver,
+                      shaderCallback: (Rect bounds) {
+                        return LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          tileMode: TileMode.clamp,
+                          colors: <Color>[
+                            Colors.deepPurpleAccent.shade100,
+                            Colors.deepPurple.shade100,
+                            Colors.deepPurple.shade100,
+                            Colors.deepPurple.shade100,
+                            // Colors.red,
+                            // Colors.yellow,
+                          ],
+                        ).createShader(bounds);
+                      },
+                      child: _buildDashboardGrid(),
                     ),
-                    Expanded(
-                      flex: 8,
-                      child: ShaderMask(
-                        // blendMode: BlendMode.srcOver,
-                        shaderCallback: (Rect bounds) {
-                          return LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            tileMode: TileMode.clamp,
-                            colors: <Color>[
-                              Colors.deepPurpleAccent.shade100,
-                              Colors.deepPurple.shade100,
-                              Colors.deepPurple.shade100,
-                              Colors.deepPurple.shade100,
-                              // Colors.red,
-                              // Colors.yellow,
-                            ],
-                          ).createShader(bounds);
-                        },
-                        child: _buildDashboardGrid(),
-                      ),
-                    ),
-                  ],
-                ),
-                if (!kReleaseMode) _buildDebugButtons(),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              if (!kReleaseMode) _buildDebugButtons(),
+            ],
           ),
         ),
       ),

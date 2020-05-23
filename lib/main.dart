@@ -1,5 +1,6 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'dashboard_screen.dart';
 import 'login_screen.dart';
 import 'transition_route_observer.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         cursorColor: Colors.orange,
         // fontFamily: 'SourceSansPro',
         textTheme: TextTheme(
-          display2: TextStyle(
+          headline3: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 45.0,
             // fontWeight: FontWeight.w400,
@@ -42,15 +43,15 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.normal,
             color: Colors.deepPurple[300],
           ),
-          display4: TextStyle(fontFamily: 'Quicksand'),
-          display3: TextStyle(fontFamily: 'Quicksand'),
-          display1: TextStyle(fontFamily: 'Quicksand'),
-          headline: TextStyle(fontFamily: 'NotoSans'),
-          title: TextStyle(fontFamily: 'NotoSans'),
-          subhead: TextStyle(fontFamily: 'NotoSans'),
-          body2: TextStyle(fontFamily: 'NotoSans'),
-          body1: TextStyle(fontFamily: 'NotoSans'),
-          subtitle: TextStyle(fontFamily: 'NotoSans'),
+          headline1: TextStyle(fontFamily: 'Quicksand'),
+          headline2: TextStyle(fontFamily: 'Quicksand'),
+          headline4: TextStyle(fontFamily: 'Quicksand'),
+          headline5: TextStyle(fontFamily: 'NotoSans'),
+          headline6: TextStyle(fontFamily: 'NotoSans'),
+          subtitle1: TextStyle(fontFamily: 'NotoSans'),
+          bodyText1: TextStyle(fontFamily: 'NotoSans'),
+          bodyText2: TextStyle(fontFamily: 'NotoSans'),
+          subtitle2: TextStyle(fontFamily: 'NotoSans'),
           overline: TextStyle(fontFamily: 'NotoSans'),
         ),
       ),
