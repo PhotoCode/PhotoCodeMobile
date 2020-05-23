@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'dashboard_screen.dart';
-import 'login_screen.dart';
+import 'main_screen.dart';
+import 'screens/login_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(),
       routes: {
         LoginScreen.routeName: (context) => LoginScreen(),
-        DashboardScreen.routeName: (context) => DashboardScreen(),
+        MainScreen.routeName: (context) => MainScreen(),
       },
     );
   }

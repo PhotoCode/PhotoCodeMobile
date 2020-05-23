@@ -6,14 +6,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
 import 'widgets/fade_in.dart';
 
-class DashboardScreen extends StatefulWidget {
-  static const routeName = '/dashboard';
+class MainScreen extends StatefulWidget {
+  static const routeName = '/main';
 
   @override
-  _DashboardScreenState createState() => _DashboardScreenState();
+  _MainScreenState createState() => _MainScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen>
+class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
   static const headerAniInterval =
       const Interval(.1, .3, curve: Curves.easeOut);
