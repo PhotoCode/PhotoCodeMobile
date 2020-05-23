@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
           overline: TextStyle(fontFamily: 'NotoSans'),
         ),
       ),
-      home: LoginScreen(),
+      home: PhotoScreen(),
       routes: {
         LoginScreen.routeName: (context) => LoginScreen(),
         MainScreen.routeName: (context) => PhotoScreen(),
