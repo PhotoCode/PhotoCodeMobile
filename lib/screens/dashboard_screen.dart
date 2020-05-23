@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-class MainScreen extends StatelessWidget {
+class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Text('Dashboard'),
+    );
   }
 }

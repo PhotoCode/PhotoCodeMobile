@@ -16,6 +16,7 @@ class _PhotoScreenState extends State<PhotoScreen> {
       _image = image;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +24,7 @@ class _PhotoScreenState extends State<PhotoScreen> {
         title: Text('Image Picker Example'),
       ),
       body: Center(
-        child: _image == null
-            ? Text('No image selected.')
-            : Image.file(_image),
+        child: _image == null ? Text('No image selected.') : Image.file(_image),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
