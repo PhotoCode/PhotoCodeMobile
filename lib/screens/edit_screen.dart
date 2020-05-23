@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rich_code_editor/exports.dart';
 
-import '../dummy_syntax_highlighter.dart';
+import '../syntax_highlighter.dart';
 
 class EditScreen extends StatelessWidget {
   @override
