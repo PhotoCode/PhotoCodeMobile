@@ -7,4 +7,5 @@ class Constants {
   static const Color accentColor = Color.fromRGBO(13, 212, 127, 1);
   static const Color textColor = Colors.white;
   static const Color backgroundColor = Color.fromRGBO(33, 38, 44, 1);
+  static const Color barBackgroundColor = Colors.black;
 }

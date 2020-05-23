@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:platform_action_sheet/platform_action_sheet.dart';
+import 'dart:async';
+import 'dart:io';
 
 class PhotoScreen extends StatefulWidget {
   static const routeName = '/photo';
@@ -10,7 +12,7 @@ class PhotoScreen extends StatefulWidget {
 }
 
 class _PhotoScreenState extends State<PhotoScreen> {
-  var _image;
+  File _image;
 
   Future getImage(ImageSource source, BuildContext context) async {
     var image = await ImagePicker.pickImage(source: source);
