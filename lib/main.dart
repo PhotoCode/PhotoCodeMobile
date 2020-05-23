@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 import 'dashboard_screen.dart';
 import 'login_screen.dart';
-import 'transition_route_observer.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -56,7 +55,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: LoginScreen(),
-      navigatorObservers: [TransitionRouteObserver()],
       routes: {
         LoginScreen.routeName: (context) => LoginScreen(),
         DashboardScreen.routeName: (context) => DashboardScreen(),
