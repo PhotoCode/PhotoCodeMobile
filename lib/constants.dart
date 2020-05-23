@@ -1,5 +1,5 @@
 class Constants {
-  static const String appName = 'ECORP';
-  static const String logoTag = 'near.huscarl.loginsample.logo';
-  static const String titleTag = 'near.huscarl.loginsample.title';
+  static const String appName = 'PhotoCode';
+  static const String logoTag = 'com.photocode.photocodemobile.logo';
+  static const String titleTag = 'com.photocode.photocodemobile.title';
 }
