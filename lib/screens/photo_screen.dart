@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getflutter/getflutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:platform_action_sheet/platform_action_sheet.dart';
 
@@ -10,15 +11,9 @@ class PhotoScreen extends StatefulWidget {
 
 class _PhotoScreenState extends State<PhotoScreen> {
   var _image;
-  Future openCamera() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _image = image;
-    });
-  }
-
-  Future openImagePicker() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+  Future selectImage(ImageSource source, BuildContext context) async {
+    var image = await ImagePicker.pickImage(source: source);
+    Navigator.pop(context);
     setState(() {
       _image = image;
     });
@@ -28,17 +23,11 @@ class _PhotoScreenState extends State<PhotoScreen> {
     PlatformActionSheet().displaySheet(context: context, actions: [
       ActionSheetAction(
         text: "Take Picture",
-        onPressed: () {
-          openCamera();
-          Navigator.pop(context);
-        },
+        onPressed: () => selectImage(ImageSource.camera, context),
       ),
       ActionSheetAction(
         text: "Choose picture from gallery",
-        onPressed: () {
-          openImagePicker();
-          Navigator.pop(context);
-        },
+        onPressed: () => selectImage(ImageSource.gallery, context),
       ),
     ]);
   }
@@ -46,18 +35,15 @@ class _PhotoScreenState extends State<PhotoScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Image Picker Example'),
-        ),
-        body: Center(
-          child:
-              _image == null ? Text('No image selected.') : Image.file(_image),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: getImage,
-          tooltip: 'Pick Image',
-          child: Icon(Icons.add_a_photo),
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            _image == null ? Text('No image selected.') : Image.file(_image),
+            GFButton(
+              onPressed: getImage,
+              text: "Get Image"
+            ),
+          ],
         ),
       ),
     );
