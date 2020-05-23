@@ -66,9 +66,9 @@ class _MainScreenState extends State<MainScreen>
       case 0:
         return SnippetsScreen();
       case 1:
-        return EditScreen();
-      case 2:
         return PhotoScreen();
+      case 2:
+        return EditScreen();
     }
     return SnippetsScreen();
   }
