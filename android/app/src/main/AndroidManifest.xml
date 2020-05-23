@@ -9,7 +9,6 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="PhotoCode"
         android:icon="@mipmap/ic_launcher"
-        android:requestLegacyExternalStorage="true"
         >
         <activity
             android:name="com.photocode.photocodemobile.MainActivity"
