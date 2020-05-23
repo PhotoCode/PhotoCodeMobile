@@ -11,7 +11,8 @@ class PhotoScreen extends StatefulWidget {
 
 class _PhotoScreenState extends State<PhotoScreen> {
   var _image;
-  Future selectImage(ImageSource source, BuildContext context) async {
+
+  Future getImage(ImageSource source, BuildContext context) async {
     var image = await ImagePicker.pickImage(source: source);
     Navigator.pop(context);
     setState(() {
@@ -19,15 +20,15 @@ class _PhotoScreenState extends State<PhotoScreen> {
     });
   }
 
-  void getImage() {
+  void openSheet() {
     PlatformActionSheet().displaySheet(context: context, actions: [
       ActionSheetAction(
         text: "Take Picture",
-        onPressed: () => selectImage(ImageSource.camera, context),
+        onPressed: () => getImage(ImageSource.camera, context),
       ),
       ActionSheetAction(
         text: "Choose picture from gallery",
-        onPressed: () => selectImage(ImageSource.gallery, context),
+        onPressed: () => getImage(ImageSource.gallery, context),
       ),
     ]);
   }
@@ -40,7 +41,7 @@ class _PhotoScreenState extends State<PhotoScreen> {
           children: <Widget>[
             _image == null ? Text('No image selected.') : Image.file(_image),
             GFButton(
-              onPressed: getImage,
+              onPressed: openSheet,
               text: "Get Image"
             ),
           ],
