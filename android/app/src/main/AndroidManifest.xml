@@ -7,8 +7,10 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="mobile"
-        android:icon="@mipmap/ic_launcher">
+        android:label="PhotoCode"
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true"
+        >
         <activity
             android:name="com.photocode.photocodemobile.MainActivity"
             android:launchMode="singleTop"

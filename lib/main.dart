@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mobile/screens/photo_screen.dart';
 
 import 'main_screen.dart';
 import 'screens/login_screen.dart';
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(),
       routes: {
         LoginScreen.routeName: (context) => LoginScreen(),
-        MainScreen.routeName: (context) => MainScreen(),
+        MainScreen.routeName: (context) => PhotoScreen(),
       },
     );
   }
