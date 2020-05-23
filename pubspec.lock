@@ -264,9 +264,11 @@ packages:
   rich_code_editor:
     dependency: "direct main"
     description:
-      name: rich_code_editor
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: fa6b78933fa6197573cb3cfa6f15cce27ead2dac
+      url: "git://github.com/leonzalion/rich_code_editor.git"
+    source: git
     version: "1.0.0"
   sky_engine:
     dependency: transitive
