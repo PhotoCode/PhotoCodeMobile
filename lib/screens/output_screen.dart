@@ -45,9 +45,11 @@ class _OutputState extends State<_Output> {
         "code": codeToExec,
       },
     );
-    setState(() {
-      execOutput = response.data["output"].toString();
-    });
+    if (this.mounted) {
+      setState(() {
+        execOutput = response.data["output"].toString();
+      });
+    }
   }
 
   @override
