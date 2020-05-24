@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rich_code_editor/exports.dart';
 
-import '../syntax_highlighter.dart';
 import '../constants.dart';
+import '../syntax_highlighter.dart';
 
 class EditArguments {
   final String ocrResult;
@@ -54,7 +54,8 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
           height: 300.0,
           margin: EdgeInsets.all(24.0),
           padding: EdgeInsets.all(24.0),
-          decoration: new BoxDecoration(border: new Border.all(color: Colors.grey)),
+          decoration:
+              new BoxDecoration(border: new Border.all(color: Colors.grey)),
           child: RichCodeField(
             autofocus: true,
             controller: _rec,
