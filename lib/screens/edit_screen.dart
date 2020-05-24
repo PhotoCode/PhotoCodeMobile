@@ -4,6 +4,7 @@ import 'package:rich_code_editor/exports.dart';
 import '../syntax_highlighter.dart';
 
 class EditScreen extends StatelessWidget {
+  static var routeName = "/edit";
   @override
   Widget build(BuildContext context) {
     return DemoCodeEditor();

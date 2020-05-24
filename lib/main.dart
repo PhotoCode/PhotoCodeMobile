@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mobile/screens/edit_screen.dart';
 
 import 'constants.dart';
 import 'main_screen.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginScreen.routeName: (context) => LoginScreen(),
         MainScreen.routeName: (context) => MainScreen(),
+        EditScreen.routeName: (context) => EditScreen(),
       },
     );
   }
