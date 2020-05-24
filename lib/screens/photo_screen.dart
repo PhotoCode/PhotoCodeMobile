@@ -19,9 +19,6 @@ class _PhotoScreenState extends State<PhotoScreen> {
     Dio dio = new Dio();
     var image = await ImagePicker.pickImage(source: source);
     Navigator.pop(context);
-    setState(() {
-      _image = image;
-    });
     FormData formData = new FormData.fromMap({
       "image": await MultipartFile.fromFile(
         image.path,
@@ -30,6 +27,9 @@ class _PhotoScreenState extends State<PhotoScreen> {
     });
     var response = await dio.post("https://photo-code-web.herokuapp.com/scan", data: formData);
     print(response);
+    setState(() {
+      _image = image;
+    });
   }
 
   void openSheet() {

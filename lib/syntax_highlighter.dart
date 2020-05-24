@@ -56,6 +56,6 @@ class DummySyntaxHighlighter implements SyntaxHighlighterBase {
   }
 
   void _addColoredText(String text, Color color) {
-    _lsSpans.add(TextSpan(text: text, style: TextStyle(color: color)));
+    _lsSpans.add(TextSpan(text: text, style: TextStyle(color: color, fontFamily: 'RobotoMono')));
   }
 }
