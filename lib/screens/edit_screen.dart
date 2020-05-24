@@ -1,7 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:getflutter/getflutter.dart';
-import 'package:mobile/screens/output_screen.dart';
 import 'package:rich_code_editor/exports.dart';
 
 import '../constants.dart';
@@ -117,9 +117,7 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
                   padding: EdgeInsets.only(right: 5),
                   child: GFButton(
                     onPressed: () {
-                      setState(() {
-                        _codeToExec = _rec.text;
-                      });
+                      executeCode();
                     },
                     text: "Execute",
                     icon: Icon(Icons.code),
@@ -145,16 +143,46 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
                 ),
               ],
             ),
-            Text(
-              "Code Output:",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+            Column(
+              children: [
+                Text(
+                  "Code Output:",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  _execOutput,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'RobotoMono',
+                  ),
+                ),
+              ],
             ),
-            OutputView(ocrResult),
           ],
         ),
       ),
     );
+  }
+
+  String _execOutput = "";
+
+  Future executeCode() async {
+    Dio dio = new Dio();
+    var response = await dio.post(
+      "https://photo-code-web.herokuapp.com/run",
+      data: {
+        "code": _rec.text,
+      },
+    );
+    if (this.mounted) {
+      setState(() {
+        print(response.data);
+        _execOutput = response.data["output"].toString();
+      });
+    }
   }
 }
