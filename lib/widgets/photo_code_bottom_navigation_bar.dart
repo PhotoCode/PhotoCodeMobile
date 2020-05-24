@@ -20,7 +20,6 @@ class PhotoCodeBottomNavigationBar extends StatelessWidget {
       tabs: [
         TabData(iconData: FontAwesomeIcons.code, title: "Snippets"),
         TabData(iconData: Icons.camera, title: "Upload"),
-        TabData(iconData: Icons.edit, title: "Edit")
       ],
       onTabChangedListener: setPage,
     );
