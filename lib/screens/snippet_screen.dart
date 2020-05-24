@@ -37,7 +37,10 @@ class SnippetScreen extends StatelessWidget {
             ),
           ),
           Spacer(flex: 4),
-          Image(image: image),
+          Container(
+            height: 200,
+            child: Image(image: image),
+          ),
           HighlightView(
             code,
             language: 'javascript',
