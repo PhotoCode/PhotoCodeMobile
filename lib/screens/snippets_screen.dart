@@ -1,34 +1,52 @@
 import 'package:date_format/date_format.dart';
-import 'package:floating_search_bar/floating_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
-import 'package:mobile/constants.dart';
+
+import '../constants.dart';
 
 class SnippetsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Constants.backgroundColor,
-      child: FloatingSearchBar.builder(
-        padding: EdgeInsets.only(top: 10),
-        pinned: true,
-        itemCount: 2,
-        itemBuilder: (BuildContext context, int index) {
-          return _buildSnippetRow(index);
+    final orientation = MediaQuery.of(context).orientation;
+
+    return Column(children: [
+      GFSearchBar(
+        searchList: ["Dragon", "is", "a", "noob"],
+        searchQueryBuilder: (query, list) {
+          return list
+              .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+              .toList();
         },
-        decoration: InputDecoration.collapsed(
-          hintText: 'Search...',
+        overlaySearchListItemBuilder: (item) {
+          return Container(
+            padding: EdgeInsets.all(8),
+            child: Text(
+              item,
+              style: TextStyle(fontSize: 18),
+            ),
+          );
+        },
+      ),
+      Expanded(
+        child: ListView.builder(
+          itemCount: 2,
+          itemBuilder: (BuildContext context, int index) {
+            return _buildSnippetRow(index);
+          },
         ),
       ),
-    );
+    ]);
   }
 
   Widget _buildSnippetRow(int index) {
-    return Row(
-      children: [
-        _buildSnippet(index * 2),
-        _buildSnippet(index * 2 + 1),
-      ],
+    return Container(
+      color: Constants.backgroundColor,
+      child: Row(
+        children: [
+          _buildSnippet(index * 2),
+          _buildSnippet(index * 2 + 1),
+        ],
+      ),
     );
   }
 

@@ -45,11 +45,7 @@ class _MainScreenState extends State<MainScreen>
         appBar: PhotoCodeAppBar(
           loadingController: _loadingController,
         ),
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: _getPage(this._currentPage),
-        ),
+        body: _getPage(this._currentPage),
         bottomNavigationBar: PhotoCodeBottomNavigationBar(
           setPage: (position) {
             setState(() {
