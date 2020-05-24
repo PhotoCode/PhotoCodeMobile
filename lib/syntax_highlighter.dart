@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_highlight/theme_map.dart';
+import 'package:highlight/highlight.dart' show highlight, Node;
 import 'package:rich_code_editor/exports.dart';
 
 /// This is a dummy implementation for Syntax highlighter.
@@ -31,33 +33,53 @@ class SyntaxHighlighter implements SyntaxHighlighterBase {
     return newValue;
   }
 
-  List<TextSpan> _lsSpans = List<TextSpan>();
   final List<String> keywords =
       "in of if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const export super debugger as async await static import from as"
           .split(' ');
 
   @override
   List<TextSpan> parseText(TextEditingValue tev) {
-    var texts = tev.text.split(' ');
+    var nodes = highlight.parse(tev.text, language: 'javascript').nodes;
 
-    _lsSpans = List<TextSpan>();
-    texts.forEach((text) {
-      var comparableText = text.replaceAll(new RegExp('[\n]'), '');
-      final RegExp numberRegex = RegExp(r'^-?\d+\.?\d*$');
-      if (numberRegex.hasMatch(comparableText)) {
-        _addColoredText(text, Colors.green);
-      } else if (keywords.contains(comparableText)) {
-        _addColoredText(text, Colors.red);
-      } else {
-        _addColoredText(text, Colors.white);
+    var theme = themeMap['solarized-dark'];
+    final TextStyle globalTextStyle = TextStyle(
+      fontFamily: 'RobotoMono',
+    );
+
+    List<TextSpan> spans = [];
+    var currentSpans = spans;
+    List<List<TextSpan>> stack = [];
+
+    _traverse(Node node) {
+      print(node.className.toString() + ' ' + node.value.toString());
+      if (node.value != null) {
+        currentSpans.add(node.className == null
+            ? TextSpan(text: node.value, style: globalTextStyle)
+            : TextSpan(
+                text: node.value,
+                style: theme[node.className]?.merge(globalTextStyle)));
+      } else if (node.children != null) {
+        List<TextSpan> tmp = [];
+        currentSpans.add(TextSpan(
+            children: tmp,
+            style: theme[node.className]?.merge(globalTextStyle)));
+
+        stack.add(currentSpans);
+        currentSpans = tmp;
+
+        node.children.forEach((n) {
+          _traverse(n);
+          if (n == node.children.last) {
+            currentSpans = stack.isEmpty ? spans : stack.removeLast();
+          }
+        });
       }
-      _addColoredText(' ', Colors.white);
-    });
-    return _lsSpans;
-  }
+    }
 
-  void _addColoredText(String text, Color color) {
-    _lsSpans.add(TextSpan(
-        text: text, style: TextStyle(color: color, fontFamily: 'RobotoMono')));
+    for (var node in nodes) {
+      _traverse(node);
+    }
+
+    return spans;
   }
 }

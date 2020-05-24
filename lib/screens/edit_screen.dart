@@ -3,8 +3,8 @@ import 'package:getflutter/getflutter.dart';
 import 'package:mobile/screens/output_screen.dart';
 import 'package:rich_code_editor/exports.dart';
 
-import '../syntax_highlighter.dart';
 import '../constants.dart';
+import '../syntax_highlighter.dart';
 
 class EditArguments {
   final String ocrResult;
@@ -52,6 +52,7 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Constants.backgroundColor,
+<<<<<<< HEAD
         body: Column(
           children: [
             Container(
@@ -83,6 +84,30 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
               ),
             )
           ],
+=======
+        body: Container(
+          height: 300.0,
+          margin: EdgeInsets.all(24.0),
+          padding: EdgeInsets.all(24.0),
+          decoration:
+              new BoxDecoration(border: new Border.all(color: Colors.grey)),
+          child: RichCodeField(
+            autofocus: true,
+            controller: _rec,
+            textCapitalization: TextCapitalization.none,
+            syntaxHighlighter: _syntaxHighlighterBase,
+            decoration: null,
+            maxLines: null,
+            onChanged: (String s) {},
+            onBackSpacePress: (TextEditingValue oldValue) {},
+            onEnterPress: (TextEditingValue oldValue) {
+              var result = _syntaxHighlighterBase.onEnterPress(oldValue);
+              if (result != null) {
+                _rec.value = result;
+              }
+            },
+          ),
+>>>>>>> 3a0b8d0e1756436d8c50aa20dc94acef696309e3
         ),
       ),
     );
