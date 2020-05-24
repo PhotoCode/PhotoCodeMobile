@@ -19,7 +19,7 @@ class DummySyntaxHighlighter implements SyntaxHighlighterBase {
 
   @override
   TextEditingValue onEnterPress(TextEditingValue oldValue) {
-    var padding = "  ";
+    var padding = "";
     var newText = oldValue.text + padding;
     var newValue = oldValue.copyWith(
       text: newText,
@@ -42,10 +42,11 @@ class DummySyntaxHighlighter implements SyntaxHighlighterBase {
 
     _lsSpans = List<TextSpan>();
     texts.forEach((text) {
+      var comparableText = text.replaceAll(new RegExp('[\n]'),'');
       final RegExp numberRegex = RegExp(r'^-?\d+\.?\d*$');
-      if (numberRegex.hasMatch(text)) {
+      if (numberRegex.hasMatch(comparableText)) {
         _addColoredText(text, Colors.green);
-      } else if (keywords.contains(text)) {
+      } else if (keywords.contains(comparableText)) {
         _addColoredText(text, Colors.red);
       } else {
         _addColoredText(text, Colors.white);
