@@ -5,7 +5,7 @@ import 'package:rich_code_editor/exports.dart';
 
 /// This is a dummy implementation for Syntax highlighter.
 /// Ideally, you would implement the `SyntaxHighlighterBase` interface as per your need of highlighting rules.
-class DummySyntaxHighlighter implements SyntaxHighlighterBase {
+class SyntaxHighlighter implements SyntaxHighlighterBase {
   @override
   TextEditingValue addTextRemotely(TextEditingValue oldValue, String newText) {
     return null;
@@ -42,7 +42,7 @@ class DummySyntaxHighlighter implements SyntaxHighlighterBase {
 
     _lsSpans = List<TextSpan>();
     texts.forEach((text) {
-      var comparableText = text.replaceAll(new RegExp('[\n]'),'');
+      var comparableText = text.replaceAll(new RegExp('[\n]'), '');
       final RegExp numberRegex = RegExp(r'^-?\d+\.?\d*$');
       if (numberRegex.hasMatch(comparableText)) {
         _addColoredText(text, Colors.green);
@@ -57,6 +57,7 @@ class DummySyntaxHighlighter implements SyntaxHighlighterBase {
   }
 
   void _addColoredText(String text, Color color) {
-    _lsSpans.add(TextSpan(text: text, style: TextStyle(color: color, fontFamily: 'RobotoMono')));
+    _lsSpans.add(TextSpan(
+        text: text, style: TextStyle(color: color, fontFamily: 'RobotoMono')));
   }
 }
