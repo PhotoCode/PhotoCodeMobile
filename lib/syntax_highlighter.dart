@@ -31,25 +31,31 @@ class DummySyntaxHighlighter implements SyntaxHighlighterBase {
     return newValue;
   }
 
+  List<TextSpan> _lsSpans = List<TextSpan>();
+  final List<String> keywords =
+      "in of if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const export super debugger as async await static import from as"
+          .split(' ');
+
   @override
   List<TextSpan> parseText(TextEditingValue tev) {
     var texts = tev.text.split(' ');
 
-    var lsSpans = List<TextSpan>();
+    _lsSpans = List<TextSpan>();
     texts.forEach((text) {
-      if (text == 'class') {
-        lsSpans
-            .add(TextSpan(text: text, style: TextStyle(color: Colors.green)));
-      } else if (text == 'if' || text == 'else') {
-        lsSpans.add(TextSpan(text: text, style: TextStyle(color: Colors.blue)));
-      } else if (text == 'return') {
-        lsSpans.add(TextSpan(text: text, style: TextStyle(color: Colors.red)));
+      final RegExp numberRegex = RegExp(r'^\d+$');
+      if (numberRegex.hasMatch(text)) {
+        _addColoredText(text, Colors.green);
+      } else if (keywords.contains(text)) {
+        _addColoredText(text, Colors.red);
       } else {
-        lsSpans
-            .add(TextSpan(text: text, style: TextStyle(color: Colors.black)));
+        _addColoredText(text, Colors.white);
       }
-      lsSpans.add(TextSpan(text: ' ', style: TextStyle(color: Colors.black)));
+      _addColoredText(' ', Colors.white);
     });
-    return lsSpans;
+    return _lsSpans;
+  }
+
+  void _addColoredText(String text, Color color) {
+    _lsSpans.add(TextSpan(text: text, style: TextStyle(color: color)));
   }
 }
