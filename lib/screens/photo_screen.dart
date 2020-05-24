@@ -28,7 +28,6 @@ class _PhotoScreenState extends State<PhotoScreen> {
       ),
     });
     var response = await dio.post("https://photo-code-web.herokuapp.com/scan", data: formData);
-    print(response);
     setState(() {
       _image = image;
       _ocrResult = response.data["data"].toString();
