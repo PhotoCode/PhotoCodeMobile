@@ -15,36 +15,15 @@ class MainScreen extends StatefulWidget {
   _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen>
-    with SingleTickerProviderStateMixin {
-  AnimationController _loadingController;
-
+class _MainScreenState extends State<MainScreen> {
   int _currentPage = 0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _loadingController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1250),
-    );
-  }
-
-  @override
-  void dispose() {
-    _loadingController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Constants.backgroundColor,
-        appBar: PhotoCodeAppBar(
-          loadingController: _loadingController,
-        ),
+        appBar: PhotoCodeAppBar(),
         body: _getPage(this._currentPage),
         bottomNavigationBar: PhotoCodeBottomNavigationBar(
           setPage: (position) {

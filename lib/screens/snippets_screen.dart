@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 
 import '../constants.dart';
+import 'snippet_screen.dart';
 
 class SnippetsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final orientation = MediaQuery.of(context).orientation;
-
     return Column(children: [
       GFSearchBar(
         searchList: ["Dragon", "is", "a", "noob"],
@@ -31,26 +30,26 @@ class SnippetsScreen extends StatelessWidget {
         child: ListView.builder(
           itemCount: 2,
           itemBuilder: (BuildContext context, int index) {
-            return _buildSnippetRow(index);
+            return _buildSnippetRow(context, index);
           },
         ),
       ),
     ]);
   }
 
-  Widget _buildSnippetRow(int index) {
+  Widget _buildSnippetRow(BuildContext context, int index) {
     return Container(
       color: Constants.backgroundColor,
       child: Row(
         children: [
-          _buildSnippet(index * 2),
-          _buildSnippet(index * 2 + 1),
+          _buildSnippet(context, index * 2),
+          _buildSnippet(context, index * 2 + 1),
         ],
       ),
     );
   }
 
-  Widget _buildSnippet(int index) {
+  Widget _buildSnippet(BuildContext context, int index) {
     final bool isLeft = index % 2 == 0;
     final bool isTop = index < 2;
 
@@ -62,19 +61,35 @@ class SnippetsScreen extends StatelessWidget {
     );
 
     return Expanded(
-      child: GFCard(
-        margin: margin,
-        boxFit: BoxFit.cover,
-        image: Image.network(
-            'https://media-exp1.licdn.com/dms/image/C4D03AQEyzcJ9UyrGtA/profile-displayphoto-shrink_200_200/0?e=1595462400&v=beta&t=E8bMsG5xP3ucJnyHJ69VdRrka2GfM-q1zBQ21bondFM'),
-        content: Column(
-          children: [
-            Text("Dragon's Snippet"),
-            Text(formatDate(
-              DateTime(2020, 05, 23),
-              [MM, ' ', d, ', ', yyyy, ' @ ', HH, ':', nn],
-            )),
-          ],
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SnippetScreen(
+                name: 'Dragon the big noob',
+                image: NetworkImage(
+                    'https://media-exp1.licdn.com/dms/image/C4D03AQEyzcJ9UyrGtA/profile-displayphoto-shrink_200_200/0?e=1595462400&v=beta&t=E8bMsG5xP3ucJnyHJ69VdRrka2GfM-q1zBQ21bondFM'),
+                code:
+                    'function add(a,b) {\n  return a+b;\n}\n\nconsole.log(a, b);',
+              ),
+            ),
+          );
+        },
+        child: GFCard(
+          margin: margin,
+          boxFit: BoxFit.cover,
+          image: Image.network(
+              'https://media-exp1.licdn.com/dms/image/C4D03AQEyzcJ9UyrGtA/profile-displayphoto-shrink_200_200/0?e=1595462400&v=beta&t=E8bMsG5xP3ucJnyHJ69VdRrka2GfM-q1zBQ21bondFM'),
+          content: Column(
+            children: [
+              Text("Dragon's Snippet"),
+              Text(formatDate(
+                DateTime(2020, 05, 23),
+                [MM, ' ', d, ', ', yyyy, ' @ ', HH, ':', nn],
+              )),
+            ],
+          ),
         ),
       ),
     );

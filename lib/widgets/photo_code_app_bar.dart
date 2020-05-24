@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login/theme.dart';
-import 'package:flutter_login/widgets.dart';
 
 import '../constants.dart';
 
 class PhotoCodeAppBar extends StatelessWidget with PreferredSizeWidget {
-  static const headerAniInterval =
-      const Interval(.1, .3, curve: Curves.easeOut);
+  final bool showBackButton;
+  final String title;
 
-  final loadingController;
-
-  PhotoCodeAppBar({@required this.loadingController});
+  PhotoCodeAppBar({this.showBackButton = false, this.title = "PhotoCode"});
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +15,25 @@ class PhotoCodeAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       leading: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: Hero(
-          tag: Constants.logoTag,
-          child: Image.asset(
-            'assets/images/photocode.png',
-            filterQuality: FilterQuality.high,
-            height: 10,
-            width: 10,
-          ),
-        ),
+        child: this.showBackButton
+            ? IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            : Hero(
+                tag: Constants.logoTag,
+                child: Image.asset(
+                  'assets/images/photocode.png',
+                  filterQuality: FilterQuality.high,
+                  height: 10,
+                  width: 10,
+                ),
+              ),
       ),
       actions: [
         Padding(
@@ -35,12 +41,14 @@ class PhotoCodeAppBar extends StatelessWidget with PreferredSizeWidget {
           child: Icon(Icons.more_horiz, color: Constants.accentColor, size: 30),
         ),
       ],
-      title: HeroText(
-        Constants.appName,
-        tag: Constants.titleTag,
-        viewState: ViewState.shrunk,
-        style: LoginThemeHelper.loginTextStyle,
-        smallFontSize: 30,
+      title: Text(
+        title,
+        style: TextStyle(
+          fontSize: 30,
+          color: Constants.accentColor,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'QuickSand',
+        ),
       ),
       centerTitle: true,
       backgroundColor: Constants.barBackgroundColor,
