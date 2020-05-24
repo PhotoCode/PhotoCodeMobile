@@ -19,7 +19,7 @@ class SyntaxHighlighter implements SyntaxHighlighterBase {
 
   @override
   TextEditingValue onEnterPress(TextEditingValue oldValue) {
-    var padding = "";
+    var padding = "  ";
     var newText = oldValue.text + padding;
     var newValue = oldValue.copyWith(
       text: newText,
@@ -64,10 +64,6 @@ class SyntaxHighlighter implements SyntaxHighlighterBase {
 
     return spans;
   }
-
-  final List<String> keywords =
-      "in of if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const export super debugger as async await static import from as"
-          .split(' ');
 
   @override
   List<TextSpan> parseText(TextEditingValue tev) {
