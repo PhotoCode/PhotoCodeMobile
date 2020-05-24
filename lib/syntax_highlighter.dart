@@ -31,43 +31,21 @@ class SyntaxHighlighter implements SyntaxHighlighterBase {
     return newValue;
   }
 
-  final List<String> keywords =
-      "in of if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const export super debugger as async await static import from as"
-          .split(' ');
-
-  @override
-  List<TextSpan> parseText(TextEditingValue tev) {
-    var nodes = highlight.parse(tev.text, language: 'javascript').nodes;
-
-    var theme = themeMap['solarized-dark'];
-
-    final TextStyle globalTextStyle = TextStyle(
-      fontFamily: 'RobotoMono',
-    );
+  List<TextSpan> _convert(List<Node> nodes) {
+    final theme = themeMap['solarized-dark'];
 
     List<TextSpan> spans = [];
     var currentSpans = spans;
     List<List<TextSpan>> stack = [];
 
     _traverse(Node node) {
-      print(node.className.toString() + ' ' + node.value.toString());
       if (node.value != null) {
         currentSpans.add(node.className == null
-            ? TextSpan(text: node.value, style: globalTextStyle)
-            : TextSpan(
-                text: node.value,
-                style: theme[node.className].merge(globalTextStyle)));
+            ? TextSpan(text: node.value)
+            : TextSpan(text: node.value, style: theme[node.className]));
       } else if (node.children != null) {
         List<TextSpan> tmp = [];
-        currentSpans.add(
-          TextSpan(
-            children: tmp,
-            style: theme[node.className] == null
-                ? TextStyle(color: Colors.white).merge(globalTextStyle)
-                : theme[node.className].merge(globalTextStyle),
-          ),
-        );
-
+        currentSpans.add(TextSpan(children: tmp, style: theme[node.className]));
         stack.add(currentSpans);
         currentSpans = tmp;
 
@@ -85,5 +63,25 @@ class SyntaxHighlighter implements SyntaxHighlighterBase {
     }
 
     return spans;
+  }
+
+  final List<String> keywords =
+      "in of if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const export super debugger as async await static import from as"
+          .split(' ');
+
+  @override
+  List<TextSpan> parseText(TextEditingValue tev) {
+    var _textStyle = TextStyle(
+      fontFamily: 'RobotoMono',
+      color: Colors.white,
+    );
+
+    return [
+      TextSpan(
+        style: _textStyle,
+        children:
+            _convert(highlight.parse(tev.text, language: 'javascript').nodes),
+      )
+    ];
   }
 }
