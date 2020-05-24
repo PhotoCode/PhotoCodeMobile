@@ -1,9 +1,7 @@
 name: mobile
 description: A new Flutter project.
 
-# The following line prevents the package from being accidentally published to
-# pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -39,7 +37,6 @@ dependencies:
     git:
       url: git://github.com/leonzalion/rich_code_editor.git
   dio: ^3.0.9
-  html: ^0.14.0+3
 
 dev_dependencies:
   flutter_test:

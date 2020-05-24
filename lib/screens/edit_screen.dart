@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:mobile/screens/output_screen.dart';
 import 'package:rich_code_editor/exports.dart';
@@ -38,6 +39,7 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
   SyntaxHighlighterBase _syntaxHighlighterBase;
 
   final String ocrResult;
+  String _codeToExec;
   _DemoCodeEditorState(this.ocrResult);
 
   @override
@@ -49,11 +51,42 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
 
   @override
   Widget build(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Text('Your snippet has been succesfully saved.'),
+    );
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Constants.backgroundColor,
-        body: Column(
+        body: ListView(
           children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(24, 24, 24, 0),
+              child: TextField(
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  labelText: "Snippet Name",
+                  hintText: "DragonHeSnippet3",
+                  hintStyle: TextStyle(
+                    color: Colors.white30,
+                  ),
+                  helperStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
             Container(
               height: 300.0,
               margin: EdgeInsets.all(24.0),
@@ -77,13 +110,48 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
                 },
               ),
             ),
-            GFButton(
-              onPressed: () => Navigator.pushNamed(
-                context,
-                OutputScreen.routeName,
-                arguments: OutputArguments(_rec.text),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: GFButton(
+                    onPressed: () {
+                      setState(() {
+                        _codeToExec = _rec.text;
+                      });
+                    },
+                    text: "Execute",
+                    icon: Icon(Icons.code),
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    color: GFColors.PRIMARY,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 5),
+                  child: GFButton(
+                    onPressed: () {
+                      Scaffold.of(context).showSnackBar(snackBar);
+                    },
+                    text: "Save",
+                    icon: Icon(Icons.save),
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    color: GFColors.SUCCESS,
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              "Code Output:",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
               ),
-            )
+            ),
+            OutputView(ocrResult),
           ],
         ),
       ),
