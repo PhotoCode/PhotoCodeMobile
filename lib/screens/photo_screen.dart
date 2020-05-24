@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mobile/screens/edit_screen.dart';
 import 'package:platform_action_sheet/platform_action_sheet.dart';
 import 'dart:async';
 import 'dart:io';
@@ -14,6 +15,7 @@ class PhotoScreen extends StatefulWidget {
 
 class _PhotoScreenState extends State<PhotoScreen> {
   File _image;
+  String _ocrResult;
 
   Future getImage(ImageSource source, BuildContext context) async {
     Dio dio = new Dio();
@@ -29,6 +31,7 @@ class _PhotoScreenState extends State<PhotoScreen> {
     print(response);
     setState(() {
       _image = image;
+      _ocrResult = response.data["data"].toString();
     });
   }
 
@@ -45,16 +48,32 @@ class _PhotoScreenState extends State<PhotoScreen> {
     ]);
   }
 
+  void openEditor() {
+    Navigator.pushNamed(
+      context, 
+      EditScreen.routeName,
+      arguments: EditArguments(_ocrResult),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
         child: Column(
           children: <Widget>[
-            _image == null ? Text('No image selected.') : Image.file(_image),
+            _image == null ? (
+              Text('No image selected.')
+            ) : (
+              Image.file(_image, height: 200)
+            ),
             GFButton(
               onPressed: openSheet,
               text: "Get Image"
+            ),
+            GFButton(
+              onPressed: openEditor, 
+              text: "Confirm",
             ),
           ],
         ),
