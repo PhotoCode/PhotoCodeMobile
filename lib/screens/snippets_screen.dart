@@ -79,11 +79,9 @@ class SnippetsScreen extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => SnippetScreen(
-                name: 'Dragon the big noob',
-                image: NetworkImage(
-                    'https://media-exp1.licdn.com/dms/image/C4D03AQEyzcJ9UyrGtA/profile-displayphoto-shrink_200_200/0?e=1595462400&v=beta&t=E8bMsG5xP3ucJnyHJ69VdRrka2GfM-q1zBQ21bondFM'),
-                code:
-                    'function add(a,b) {\n  return a+b;\n}\n\nconsole.log(a, b);',
+                name: snippet.name,
+                image: NetworkImage(snippet.imageURL),
+                code: snippet.code,
               ),
             ),
           );
@@ -91,11 +89,10 @@ class SnippetsScreen extends StatelessWidget {
         child: GFCard(
           margin: margin,
           boxFit: BoxFit.cover,
-          image: Image.network(
-              'https://media-exp1.licdn.com/dms/image/C4D03AQEyzcJ9UyrGtA/profile-displayphoto-shrink_200_200/0?e=1595462400&v=beta&t=E8bMsG5xP3ucJnyHJ69VdRrka2GfM-q1zBQ21bondFM'),
+          image: Image.network(snippet.imageURL),
           content: Column(
             children: [
-              Text("Dragon's Snippet"),
+              Text(snippet.name),
               Text(formatDate(
                 DateTime(2020, 05, 23),
                 [MM, ' ', d, ', ', yyyy, ' @ ', HH, ':', nn],
