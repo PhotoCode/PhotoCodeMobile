@@ -1,6 +1,8 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
+import 'package:mobile/models/snippet.dart';
+import 'package:mobile/models/snippets.dart';
 
 import '../constants.dart';
 import 'snippet_screen.dart';
@@ -11,13 +13,12 @@ class SnippetsScreen extends StatelessWidget {
     return Column(children: [
       GFSearchBar(
         searchBoxInputDecoration: InputDecoration(
-          fillColor: Constants.barBackgroundColor,
-          filled: true, 
-          hintText: "Search for snippets",
-          hintStyle: TextStyle(
-            color: Constants.accentColor,
-          )
-        ),
+            fillColor: Constants.barBackgroundColor,
+            filled: true,
+            hintText: "Search for snippets",
+            hintStyle: TextStyle(
+              color: Constants.accentColor,
+            )),
         searchList: ["Dragon", "is", "a", "noob"],
         searchQueryBuilder: (query, list) {
           return list
@@ -60,6 +61,8 @@ class SnippetsScreen extends StatelessWidget {
   Widget _buildSnippet(BuildContext context, int index) {
     final bool isLeft = index % 2 == 0;
     final bool isTop = index < 2;
+
+    final Snippet snippet = Snippets.getSnippet(index);
 
     final EdgeInsets margin = EdgeInsets.fromLTRB(
       isLeft ? 10 : 5,
