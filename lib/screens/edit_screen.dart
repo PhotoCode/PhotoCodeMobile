@@ -36,11 +36,9 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
       child: RichCodeField(
         autofocus: true,
         controller: _rec,
-        style: TextStyle(
-          color: Colors.white,
-        ),
         textCapitalization: TextCapitalization.none,
         syntaxHighlighter: _syntaxHighlighterBase,
+        decoration: null,
         maxLines: null,
         onChanged: (String s) {},
         onBackSpacePress: (TextEditingValue oldValue) {},
