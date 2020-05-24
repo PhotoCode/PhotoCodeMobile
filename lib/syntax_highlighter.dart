@@ -42,7 +42,7 @@ class DummySyntaxHighlighter implements SyntaxHighlighterBase {
 
     _lsSpans = List<TextSpan>();
     texts.forEach((text) {
-      final RegExp numberRegex = RegExp(r'^\d+$');
+      final RegExp numberRegex = RegExp(r'^-?\d+\.?\d*$');
       if (numberRegex.hasMatch(text)) {
         _addColoredText(text, Colors.green);
       } else if (keywords.contains(text)) {

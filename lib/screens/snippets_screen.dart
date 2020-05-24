@@ -2,19 +2,23 @@ import 'package:date_format/date_format.dart';
 import 'package:floating_search_bar/floating_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
+import 'package:mobile/constants.dart';
 
 class SnippetsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FloatingSearchBar.builder(
-      padding: EdgeInsets.only(top: 10),
-      pinned: true,
-      itemCount: 2,
-      itemBuilder: (BuildContext context, int index) {
-        return _buildSnippetRow(index);
-      },
-      decoration: InputDecoration.collapsed(
-        hintText: 'Search...',
+    return Container(
+      color: Constants.backgroundColor,
+      child: FloatingSearchBar.builder(
+        padding: EdgeInsets.only(top: 10),
+        pinned: true,
+        itemCount: 2,
+        itemBuilder: (BuildContext context, int index) {
+          return _buildSnippetRow(index);
+        },
+        decoration: InputDecoration.collapsed(
+          hintText: 'Search...',
+        ),
       ),
     );
   }
