@@ -56,12 +56,17 @@ class SyntaxHighlighter implements SyntaxHighlighterBase {
             ? TextSpan(text: node.value, style: globalTextStyle)
             : TextSpan(
                 text: node.value,
-                style: theme[node.className]?.merge(globalTextStyle)));
+                style: theme[node.className].merge(globalTextStyle)));
       } else if (node.children != null) {
         List<TextSpan> tmp = [];
-        currentSpans.add(TextSpan(
+        currentSpans.add(
+          TextSpan(
             children: tmp,
-            style: theme[node.className]?.merge(globalTextStyle)));
+            style: theme[node.className] == null
+                ? TextStyle(color: Colors.white).merge(globalTextStyle)
+                : theme[node.className].merge(globalTextStyle),
+          ),
+        );
 
         stack.add(currentSpans);
         currentSpans = tmp;
