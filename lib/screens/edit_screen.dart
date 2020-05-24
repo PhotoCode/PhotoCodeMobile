@@ -12,7 +12,7 @@ class EditArguments {
 }
 
 class EditScreen extends StatelessWidget {
-  static var routeName = "/edit";
+  static final String routeName = "/edit";
   String ocrResult = "Error";
   @override
   Widget build(BuildContext context) {
@@ -52,14 +52,14 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Constants.backgroundColor,
-<<<<<<< HEAD
         body: Column(
           children: [
             Container(
               height: 300.0,
               margin: EdgeInsets.all(24.0),
               padding: EdgeInsets.all(24.0),
-              decoration: new BoxDecoration(border: new Border.all(color: Colors.grey)),
+              decoration:
+                  new BoxDecoration(border: new Border.all(color: Colors.grey)),
               child: RichCodeField(
                 autofocus: true,
                 controller: _rec,
@@ -79,35 +79,12 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
             ),
             GFButton(
               onPressed: () => Navigator.pushNamed(
-                context, OutputScreen.routeName,
+                context,
+                OutputScreen.routeName,
                 arguments: OutputArguments(_rec.text),
               ),
             )
           ],
-=======
-        body: Container(
-          height: 300.0,
-          margin: EdgeInsets.all(24.0),
-          padding: EdgeInsets.all(24.0),
-          decoration:
-              new BoxDecoration(border: new Border.all(color: Colors.grey)),
-          child: RichCodeField(
-            autofocus: true,
-            controller: _rec,
-            textCapitalization: TextCapitalization.none,
-            syntaxHighlighter: _syntaxHighlighterBase,
-            decoration: null,
-            maxLines: null,
-            onChanged: (String s) {},
-            onBackSpacePress: (TextEditingValue oldValue) {},
-            onEnterPress: (TextEditingValue oldValue) {
-              var result = _syntaxHighlighterBase.onEnterPress(oldValue);
-              if (result != null) {
-                _rec.value = result;
-              }
-            },
-          ),
->>>>>>> 3a0b8d0e1756436d8c50aa20dc94acef696309e3
         ),
       ),
     );

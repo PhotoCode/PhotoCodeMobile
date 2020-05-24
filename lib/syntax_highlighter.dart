@@ -5,8 +5,6 @@ import 'package:flutter_highlight/theme_map.dart';
 import 'package:highlight/highlight.dart' show highlight, Node;
 import 'package:rich_code_editor/exports.dart';
 
-/// This is a dummy implementation for Syntax highlighter.
-/// Ideally, you would implement the `SyntaxHighlighterBase` interface as per your need of highlighting rules.
 class SyntaxHighlighter implements SyntaxHighlighterBase {
   @override
   TextEditingValue addTextRemotely(TextEditingValue oldValue, String newText) {
@@ -42,6 +40,7 @@ class SyntaxHighlighter implements SyntaxHighlighterBase {
     var nodes = highlight.parse(tev.text, language: 'javascript').nodes;
 
     var theme = themeMap['solarized-dark'];
+
     final TextStyle globalTextStyle = TextStyle(
       fontFamily: 'RobotoMono',
     );
