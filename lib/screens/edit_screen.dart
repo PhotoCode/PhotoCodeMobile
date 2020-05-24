@@ -23,8 +23,8 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
   @override
   void initState() {
     super.initState();
-    _syntaxHighlighterBase = DummySyntaxHighlighter();
-    _rec = RichCodeEditingController(_syntaxHighlighterBase);
+    _syntaxHighlighterBase = SyntaxHighlighter();
+    _rec = RichCodeEditingController(_syntaxHighlighterBase, text: 'hi');
   }
 
   @override
