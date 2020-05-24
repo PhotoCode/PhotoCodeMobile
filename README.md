@@ -1,3 +1,5 @@
+# PhotoCode
+
 ## Inspiration
 Inspired by TheOpenCode's mission to make coding accessible to people in low-income families in the underprivileged parts of the world, we were thinking of a way where students could code without a computer. After doing some research, we discovered that while only around 10% of households have access to a computer in Africa. This means that a lot of the time, students wishing to learn computer science often don't get the amount of practice that they need. In addition, electricity in these less developed countries can be expensive, so it's important to ensure that learning doesn't negatively impact living, especially with a more technological-oriented subject like computer science. Thus, we thought it would be a good idea to allow these students to practice computer science by providing a way to easily write and run hand-written code, which not only conserves electricity, but it's also been proven that writing out code on paper is a much more effective method to better understand the code you're writing, as it forces you to think much more deeply about the execution process behind your code.
 
