@@ -9,7 +9,11 @@ class Snippets {
     ),
   ];
 
-  static getSnippet(int index) {
+  static Snippet getSnippet(int index) {
     return snippets[index];
+  }
+
+  static void addSnippet(Snippet snippet) {
+    snippets.add(snippet);
   }
 }

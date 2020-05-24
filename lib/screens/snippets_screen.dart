@@ -13,12 +13,13 @@ class SnippetsScreen extends StatelessWidget {
     return Column(children: [
       GFSearchBar(
         searchBoxInputDecoration: InputDecoration(
-            fillColor: Constants.barBackgroundColor,
-            filled: true,
-            hintText: "Search for snippets",
-            hintStyle: TextStyle(
-              color: Constants.accentColor,
-            )),
+          fillColor: Constants.barBackgroundColor,
+          filled: true,
+          hintText: "Search for snippets",
+          hintStyle: TextStyle(
+            color: Constants.accentColor,
+          ),
+        ),
         searchList: ["Dragon", "is", "a", "noob"],
         searchQueryBuilder: (query, list) {
           return list
