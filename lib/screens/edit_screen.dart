@@ -57,110 +57,131 @@ class _DemoCodeEditorState extends State<DemoCodeEditor> {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Constants.backgroundColor,
-        body: ListView(
+        body: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(24, 24, 24, 0),
-              child: TextField(
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  labelText: "Snippet Name",
-                  hintText: "DragonHeSnippet3",
-                  hintStyle: TextStyle(
-                    color: Colors.white30,
-                  ),
-                  helperStyle: TextStyle(
-                    color: Colors.white,
-                  ),
-                  labelStyle: TextStyle(
-                    color: Colors.white,
-                  ),
+            Expanded(
+              flex: 5,
+              child: Container(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(24, 24, 24, 0),
+                      child: TextField(
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          labelText: "Snippet Name",
+                          hintText: "DragonHeSnippet3",
+                          hintStyle: TextStyle(
+                            color: Colors.white30,
+                          ),
+                          helperStyle: TextStyle(
+                            color: Colors.white,
+                          ),
+                          labelStyle: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: Container(
+                        margin: EdgeInsets.all(24.0),
+                        padding: EdgeInsets.all(24.0),
+                        decoration:
+                            new BoxDecoration(border: new Border.all(color: Colors.grey)),
+                        child: RichCodeField(
+                          autofocus: true,
+                          controller: _rec,
+                          textCapitalization: TextCapitalization.none,
+                          syntaxHighlighter: _syntaxHighlighterBase,
+                          decoration: null,
+                          maxLines: null,
+                          onChanged: (String s) {},
+                          onBackSpacePress: (TextEditingValue oldValue) {},
+                          onEnterPress: (TextEditingValue oldValue) {
+                            var result = _syntaxHighlighterBase.onEnterPress(oldValue);
+                            if (result != null) {
+                              _rec.value = result;
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Container(
-              height: 300.0,
-              margin: EdgeInsets.all(24.0),
-              padding: EdgeInsets.all(24.0),
-              decoration:
-                  new BoxDecoration(border: new Border.all(color: Colors.grey)),
-              child: RichCodeField(
-                autofocus: true,
-                controller: _rec,
-                textCapitalization: TextCapitalization.none,
-                syntaxHighlighter: _syntaxHighlighterBase,
-                decoration: null,
-                maxLines: null,
-                onChanged: (String s) {},
-                onBackSpacePress: (TextEditingValue oldValue) {},
-                onEnterPress: (TextEditingValue oldValue) {
-                  var result = _syntaxHighlighterBase.onEnterPress(oldValue);
-                  if (result != null) {
-                    _rec.value = result;
-                  }
-                },
+            Expanded(
+              flex: 4,
+              child: Container(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 5),
+                          child: GFButton(
+                            onPressed: () {
+                              executeCode();
+                            },
+                            text: "Execute",
+                            icon: Icon(Icons.code),
+                            textStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                            color: GFColors.PRIMARY,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 5),
+                          child: GFButton(
+                            onPressed: () {
+                              Scaffold.of(context).showSnackBar(snackBar);
+                            },
+                            text: "Save",
+                            icon: Icon(Icons.save),
+                            textStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                            color: GFColors.SUCCESS,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          "Code Output:",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          _execOutput,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'RobotoMono',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(right: 5),
-                  child: GFButton(
-                    onPressed: () {
-                      executeCode();
-                    },
-                    text: "Execute",
-                    icon: Icon(Icons.code),
-                    textStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    color: GFColors.PRIMARY,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 5),
-                  child: GFButton(
-                    onPressed: () {
-                      Scaffold.of(context).showSnackBar(snackBar);
-                    },
-                    text: "Save",
-                    icon: Icon(Icons.save),
-                    textStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    color: GFColors.SUCCESS,
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Text(
-                  "Code Output:",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  _execOutput,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'RobotoMono',
-                  ),
-                ),
-              ],
             ),
           ],
         ),
