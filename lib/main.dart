@@ -5,6 +5,7 @@ import 'package:mobile/screens/edit_screen.dart';
 import 'constants.dart';
 import 'main_screen.dart';
 import 'screens/login_screen.dart';
+import 'models/snippets.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -13,6 +14,8 @@ void main() {
           SystemUiOverlayStyle.dark.systemNavigationBarColor,
     ),
   );
+
+  
   runApp(MyApp());
 }
 
